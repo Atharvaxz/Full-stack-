@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banking UI</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .bank-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .balance-card {
+      background: #e3f3ff;
+      color: #333;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-deposit {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .btn-withdraw {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    @media (max-width: 500px) {
+      .btn-group {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bank-container">
+    <div class="balance-card">
+      Balance: ₹10,000
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-deposit">Deposit</button>
+      <button class="btn btn-withdraw">Withdraw</button>
+    </div>
+  </div>
+
+</body>
+</html>
