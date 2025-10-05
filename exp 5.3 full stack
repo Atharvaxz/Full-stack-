@@ -1,0 +1,28 @@
+// 1. Import Mongoose & connect
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/ecommerceDB', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// 2. Define Schemas & Model
+const variantSchema = new mongoose.Schema({ color: String, size: String, stock: Number });
+const productSchema = new mongoose.Schema({ name: String, price: Number, category: String, variants: [variantSchema] });
+const Product = mongoose.model('Product', productSchema);
+
+// 3. Insert Sample Products
+async function insertProducts() {
+  await Product.insertMany([
+    { name: "T-Shirt", price: 499, category: "Clothing", variants: [{ color: "Red", size: "M", stock: 50 }, { color: "Blue", size: "L", stock: 30 }] },
+    { name: "Sneakers", price: 2499, category: "Footwear", variants: [{ color: "White", size: 42, stock: 20 }, { color: "Black", size: 43, stock: 15 }] },
+    { name: "Backpack", price: 1299, category: "Accessories", variants: [{ color: "Black", size: "Standard", stock: 100 }, { color: "Grey", size: "Standard", stock: 80 }] }
+  ]);
+  console.log("Products inserted!");
+}
+
+// 4. Queries
+async function runQueries() {
+  console.log("All Products:\n", await Product.find());
+  console.log("\nFootwear Products:\n", await Product.find({ category: "Footwear" }));
+  console.log("\nClothing Variants (Name + Color + Stock):\n", await Product.find({ category: "Clothing" }, { name: 1, "variants.color": 1, "variants.stock": 1, _id: 0 }));
+}
+
+// 5. Execute
+insertProducts().then(() => runQueries());
